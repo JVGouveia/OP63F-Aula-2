@@ -4,16 +4,26 @@ using UnityEngine;
 
 public class CubController : MonoBehaviour
 {
+    public AudioClip deathSound;
+
     void OnCollisionEnter(Collision collision)
-    {   
-        if (collision.gameObject.CompareTag("Player")){
-            var hit = collision.gameObject;
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameObject player = collision.gameObject;
 
-            float randomX = UnityEngine.Random.Range(-15, 15);
-            float randomZ = UnityEngine.Random.Range(-15, 15);
+            // Desvincula a câmera
+            Camera.main.transform.parent = null;
 
-            Destroy(hit); // Destroi o objeto atingido
-            Destroy(gameObject); // Destroi a bala
+            // Toca o som de morte
+            AudioSource audio = player.GetComponent<AudioSource>();
+            if (audio != null && deathSound != null)
+            {
+                audio.PlayOneShot(deathSound);
+            }
+
+            Destroy(player); // Destroi player
+            Destroy(gameObject); // Destroi armadilha
         }
     }
 }

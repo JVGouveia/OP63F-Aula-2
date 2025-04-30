@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Aula 2.sln"
+    "dotnet.defaultSolution": "OP63F-Aula-2.sln"
 }
